@@ -8,44 +8,49 @@ import GLOBAL from '../global'
 import LoadingLogo from '../auth/LoadingLogo'
  
 export default class DetailsFilm extends Component {
+  _isMounted = false;
 
   constructor(props) {
     super(props)
     this.state = {
       disabledButton: false,
       addToList: 'Add to list',
+      filmID: this.props.navigation.state.params.filmID,
       dataSrc: this.props.navigation.state.params.dataSrc,
       user: GLOBAL.authScreen.state.user
     }
   };
 
-componentDidMount = () => {
+componentDidMount = async () => {
+  this._isMounted = true;
+
+  if (typeof(this.state.dataSrc)!='object') {
+    await fetch('http://www.omdbapi.com/?i=' + this.state.filmID + '&apikey=1f641348')
+    .then(res=>res.json())
+    .then(resJson=>{
+      if (this._isMounted) 
+      {this.setState({...this.state, dataSrc: resJson})
+    }})
+  }
+
+  // get User data
   let list = GLOBAL.authScreen.state.list;
 
   if (list.length) {
     for (let i=0; i<list.length; i++) {
-      if(list[i].imdbID == this.state.dataSrc.imdbID) {
+      if(list[i].imdbID == this.state.dataSrc.imdbID && this._isMounted) {
         this.setState({...this.state, addToList: '✓ In your list'})
         return;
       } 
     }
   } 
 }
+
+componentWillUnmount() {
+  this._isMounted = false;
+}
   
 toggleToList = async () => {
-    // let data;
-    // await firebase.firestore()
-    //   .collection('users')
-    //   .doc(this.state.user.email)
-    //   .get()
-    //   .then(doc=>{
-    //     if (doc.exists) {
-    //       data = doc.data().films
-    //     } else {
-    //       console.log('no data!')
-    //     }
-    //   })
-    //   .catch(err=>{console.log(err.message)})
   
   // Disable button
   this.setState({...this.state, disabledButton: true})
@@ -115,16 +120,13 @@ toggleToList = async () => {
 }
   
   render() {
-    // data of the film 
-    const data = this.state.dataSrc
-
-    // add alternative poster
-    let poster;
-    if (data.Poster != 'N/A') {poster = data.Poster} else {poster = 'https://i.pinimg.com/originals/72/24/f6/7224f6d53614cedbf8cef516b705a555.jpg'}
-
-    if (data) {
+    if (typeof(this.state.dataSrc)=='object') {
+      // data of the film 
+      const data = this.state.dataSrc;
+      // add alternative poster
+      let poster = data.Poster != 'N/A' ? data.Poster : 'https://i.pinimg.com/originals/72/24/f6/7224f6d53614cedbf8cef516b705a555.jpg'
       return (
-        <View style={sHome.flex1}>
+        <ScrollView style={sHome.flex1}>
           <View style={sHome.posterBigCon}>
             <Image style={sHome.posterBig} source={{uri: poster}}/>
           </View>
@@ -139,13 +141,14 @@ toggleToList = async () => {
                 <TouchableOpacity style={[sHome.buttonCon]} disable={this.state.disabledButton} onPress={()=>this.toggleToList()}><Text style={sHome.playButtonText}>{this.state.addToList}</Text></TouchableOpacity>
               </View>
               <View style={sHome.infoPosterYearCon}><Text style={sHome.infoContent}>{data.Plot}</Text></View>
+              <View style={sHome.infoPosterYearCon}><Text><Text style={sHome.playButtonText}>Type: </Text><Text style={sHome.infoContent}>{data.Type}</Text></Text></View>
               <View style={sHome.infoPosterYearCon}><Text><Text style={sHome.playButtonText}>Runtime: </Text><Text style={sHome.infoContent}>{data.Runtime}</Text></Text></View>
               <View style={sHome.infoPosterYearCon}><Text><Text style={sHome.playButtonText}>Actors: </Text><Text style={sHome.infoContent}>{data.Actors}</Text></Text></View>
 
             </View>
           </View>
           
-        </View>
+        </ScrollView>
       );
     } else {
       return <LoadingLogo/>

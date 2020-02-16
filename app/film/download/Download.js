@@ -18,17 +18,15 @@ export default class SearchScreen extends Component {
   }
   
   getFullData = id => {
-    fetch('http://www.omdbapi.com/?i=' + id + '&apikey=1f641348')
-    .then(res=>res.json())
-    .then(resJson=>this.props.navigation.navigate('DetailsFilm', {dataSrc: resJson}))
+    this.props.navigation.navigate('DetailsFilm', {filmID: id, dataSrc: ''})
   }
 
 
   render() {
   GLOBAL.downloadScreen = this
   let list = GLOBAL.authScreen.state.list.map((val, key)=> {
-    // console.log(val, key)
-    return <TouchableOpacity key={key} style={sSearch.posterGridElement} onPress={()=>this.getFullData(val.imdbID)}><Image source={{uri: val.Poster}} style={sHome.imgPosterScroll}/><Text style={sHome.posterName}>{val.Title}</Text></TouchableOpacity>
+    let poster = val.Poster != 'N/A' ? val.Poster : 'https://i.pinimg.com/originals/72/24/f6/7224f6d53614cedbf8cef516b705a555.jpg'
+    return <TouchableOpacity key={key} style={sSearch.posterGridElement} onPress={()=>this.getFullData(val.imdbID)}><Image source={{uri: poster}} style={sHome.imgPosterScroll}/><Text style={sHome.posterName}>{val.Title}</Text></TouchableOpacity>
   })
 
     return(

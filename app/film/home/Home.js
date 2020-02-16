@@ -75,11 +75,11 @@ export default class Film extends Component {
     if (this.state.loading) {return <LoadingLogo/>}
     else {
     let trendings = this.state.trendingData.map((val, key)=>{
-    return <TouchableOpacity key={key} onPress={()=>this.props.navigation.navigate('DetailsFilm', {dataSrc: val})} style={sHome.posterScroll}><Image source={{uri: val.Poster}} style={sHome.imgPosterScroll}/><Text style={sHome.posterName}>{val.Title}</Text></TouchableOpacity>
+    return <TouchableOpacity key={key} onPress={()=>this.props.navigation.navigate('DetailsFilm', {dataSrc: val, filmID: val.imdbID})} style={sHome.posterScroll}><Image source={{uri: val.Poster}} style={sHome.imgPosterScroll}/><Text style={sHome.posterName}>{val.Title}</Text></TouchableOpacity>
     });
 
     let populars = this.state.popularData.map((val, key)=>{
-      return <TouchableOpacity key={key} onPress={()=>this.props.navigation.navigate('DetailsFilm', {dataSrc: val})} style={sHome.posterScroll}><Image source={{uri: val.Poster}} style={sHome.imgPosterScroll}/><Text style={sHome.posterName}>{val.Title}</Text></TouchableOpacity>
+      return <TouchableOpacity key={key} onPress={()=>this.props.navigation.navigate('DetailsFilm', {dataSrc: val, filmID: val.imdbID})} style={sHome.posterScroll}><Image source={{uri: val.Poster}} style={sHome.imgPosterScroll}/><Text style={sHome.posterName}>{val.Title}</Text></TouchableOpacity>
     });
 
     return(

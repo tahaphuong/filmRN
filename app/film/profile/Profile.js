@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Text, View, ScrollView, Image, TouchableOpacity, ImageBackground, Alert } from 'react-native';
 import firebase from 'react-native-firebase';
 import { sProfile } from '../styleFilm'
+import { Avatar } from 'react-native-elements';
 
 export default class Profile extends Component {
   constructor(props) {
@@ -18,8 +19,6 @@ export default class Profile extends Component {
         photoURL: 'https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png'
       })
     }
-
-    console.log(user)
 
     return(
       <View>

@@ -25,6 +25,18 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 
 import Film from './app/film/Nav/FilmContainer'
+import { ThemeProvider, ThemeConsumer } from 'react-native-elements'
+
+const theme = {
+  height: 300, 
+  width: 200,
+}
+
+const OutsideComponent = () => {
+  <ThemeConsumer>
+    {({theme})=><View style={theme.view}></View>}
+  </ThemeConsumer>
+}
 
 
 const App: () => React$Node = () => {
@@ -32,7 +44,7 @@ const App: () => React$Node = () => {
   return (
     <>
     <StatusBar animated={true} showHideTransition="fade" translucent={true} backgroundColor="#ffffff00" barStyle="light-content" />
-      <Film/>
+      <Film />
 
       <SafeAreaView>
       </SafeAreaView>

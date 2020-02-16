@@ -1,3 +1,4 @@
+import React, { Component } from 'react'
 import { createStackNavigator } from 'react-navigation-stack'
 import { createBottomTabNavigator } from 'react-navigation-tabs'
 import Home from '../home/Home';
@@ -9,6 +10,7 @@ import Search from '../search/Search'
 import Profile from '../profile/Profile'
 
 import Download from '../download/Download'
+import { Icon } from 'react-native-elements'
 
 const HomeStack = createStackNavigator(
   {
@@ -24,20 +26,22 @@ const HomeStack = createStackNavigator(
 
 const SearchStack = createStackNavigator(
   {
-    home: {screen: Search},
-    DetailsFilm: {screen: DetailsFilm}
+    home: {screen: Search,},
+    DetailsFilm: {screen: DetailsFilm},
   },
   {
     defaultNavigationOptions: {headerShown: false}
+    
   }
 );
 
 const DownloadStack = createStackNavigator(
   {
     home: {screen: Download},
+    DetailsFilm: {screen: DetailsFilm}
   },
   {
-    defaultNavigationOptions: {headerShown: false}
+    defaultNavigationOptions: {headerShown: false},
   }
 );
 
@@ -59,6 +63,28 @@ export const AppStack = createBottomTabNavigator(
   },
   {
     initialRouteName: 'Home',
-  },
+    defaultNavigationOptions: ({ navigation }) => ({
+      tabBarIcon: ({ focused, horizontal, tintColor }) => {
+        const { routeName } = navigation.state;
+        if (routeName == 'Home') {
+          let x = focused ? <Icon name='md-home' type='ionicon' size={25} color='#f69552'/> : <Icon name='md-home' type='ionicon' size={25} color='gray'/>
+          return x;
+        } else if (routeName == 'Search') {
+          let x = focused ? <Icon name='md-search' type='ionicon' size={25} color='#f69552'/> : <Icon name='md-search' type='ionicon' size={25} color='gray'/>
+          return x;
+        } else if (routeName == 'Download') {
+          let x = focused ? <Icon name='md-download' type='ionicon' size={25} color='#f69552'/> : <Icon name='md-download' type='ionicon' size={25} color='gray'/>
+          return x;
+        } else if (routeName == 'Profile') {
+          let x = focused ? <Icon name='md-person' type='ionicon' size={25} color='#f69552'/> : <Icon name='md-person' type='ionicon' size={25} color='gray'/>
+          return x;
+        }
+      },
+    }),
+    tabBarOptions: {
+      activeTintColor: '#f69552',
+      inactiveTintColor: 'gray',
+    },
+  }
 );
 

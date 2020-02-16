@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
 import { NavigationActions } from 'react-navigation';
 
-import { Text, View, ImageBackground, KeyboardAvoidingView, TouchableOpacity, TextInput } from 'react-native'
-import { styles } from '../styleFilm';
-import { ss } from '../styleFilm'
+import { Text, View, ImageBackground, Image, KeyboardAvoidingView, TouchableOpacity, TextInput, ActivityIndicator } from 'react-native'
+import { styles, ss } from '../styleFilm';
 import firebase from 'react-native-firebase';
 
  
@@ -13,7 +12,8 @@ export default class LoginFilm extends Component {
     this.state = {
       email: '',
       pass: '',
-      errorMessage: ''
+      errorMessage: '',
+      loginButtonText: <Text style={ss.loginButtonText}>log in</Text>,
     }
   }
 
@@ -22,20 +22,20 @@ export default class LoginFilm extends Component {
   }
 
   handleLogin = async () => {
+    this.setState({...this.state, loginButtonText: <ActivityIndicator size="small"/>})
     const { email, pass } = this.state
 
     if (email && pass) {
       try {
         let result = await firebase.auth().signInWithEmailAndPassword(email, pass)
         // console.log(result)
-
         if (result.user) {
-          await this.props.navigation.navigate('AuthLoading')
+          this.props.navigation.navigate('AuthLoading')
         }
         else { throw new Error('Invalid user') }
 
       } catch (err) {
-        this.setState({ errorMessage: err.message })
+        this.setState({ ...this.state, errorMessage: err.message })
       }
     } else {
       this.setState({...this.state, errorMessage: 'please fill all fields'})
@@ -44,14 +44,11 @@ export default class LoginFilm extends Component {
 	
   render() {
     return (
-        <View style={styles.loginContainer}>
+        <View style={ss.bg}>
           <KeyboardAvoidingView behavior="position">
 
           <View style={ss.titleLoginCon} >
-            <View style={ss.logoShape}>
-              <View style={ss.logoInside}></View>
-            </View>
-            <Text style={ss.titleLogin}>photoplay</Text>
+            <Image source={require('../photosFilmApp/logo.png')} style={ss.logoImg}/>
           </View>
 
           <View>
@@ -59,18 +56,17 @@ export default class LoginFilm extends Component {
             <View style={ss.loginInputCon}><TextInput style={ss.loginInput} placeholder="password" underlineColorAndroid="transparent" onChangeText={text=>this.getInput('pass', text)} secureTextEntry={true}/></View>
           </View>
           
-            </KeyboardAvoidingView>
+          </KeyboardAvoidingView>
 
             <View style={ss.loginButtonCon}>
               <TouchableOpacity style={ss.loginButton} onPress={()=>this.handleLogin()}>
-                <Text style={ss.loginButtonText}>log in</Text>
+              {this.state.loginButtonText}
               </TouchableOpacity>
             </View>
-          <View><Text>{this.state.errorMessage}</Text></View>
+          <View style={ss.errorMessageCon}><Text style={ss.errorMessage}>{this.state.errorMessage}</Text></View>
           <TouchableOpacity onPress={()=>this.props.navigation.navigate('SignUp')}><Text>to sign up</Text></TouchableOpacity>
-
-
         </View>
+      
 		);
   } 
 }

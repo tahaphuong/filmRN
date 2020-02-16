@@ -8,38 +8,49 @@ const { width, height } = Dimensions.get('window');
 // gray input: d3d3d359
 // orange: #ffaf7a
 // red error: #9b1c31
+
+// background Login: #E26B5A
+
+// ORANGE PASTLE palette
+// #f69552 
+// #dd864a
+// #c57742
+// #ac6839
+// #945931
+
 export const styles = StyleSheet.create({
   loginContainer: {
-    flex:100,
-    backgroundColor: '#f5f5f5',
+    height: height,
+    backgroundColor: '#f5f5f599',
 
   },
   loginImg: {
-    flex: 100
+    height: height*0.5,
   },
-  titleLogin: {
+  loginTitle: {
     fontFamily: 'Circular-Bold',
     fontSize: 30,
-    color: 'rgb(255,169,10)'
+    color: 'rgb(255,169,10)',
   },
   loginImgCon: {
-    flex: 31,
+    height: 0.5*height,
   },
   loginInputArea: {
-    flex: 27
+    height: 0.27*height,
   },
 
   loginUpperLinear: {
-    flex: 20
+    height: 0.1*height
   },
   loginMiddleLinear: {
-    flex: 30,
-    alignItems: 'center'
+    flex: 0.25*height,
+    alignItems: 'center',
   },
   loginLowerLinear: {
-    height: 50
+    height: 0.15*height,
   },
 
+  // input style
   loginInput: {
     width: '76%',
     height: 40,
@@ -79,52 +90,63 @@ export const styles = StyleSheet.create({
 })
 
 export const ss = StyleSheet.create({
+  bg: {
+    backgroundColor: '#E26B5A',
+    flex: 1
+  },
+
+  logoImg: {
+    height: width*0.5,
+    width: width*0.5
+  },
+  
   titleLoginCon: {
-    alignItems: 'center'
-  },
-
-  logoShape: {
-    height: 100,
-    width: 100,
-    backgroundColor: '#f5f5f5',
-    borderRadius: 20,
-
-    borderColor: 'black',
-    borderWidth: 2,
-    borderStyle: 'solid',
-
-    alignItems: 'center',
+    height: 0.35*height,
     justifyContent: 'center',
-
-    marginTop: height*0.15,
-  },
-  logoInside: {
-    height: 80,
-    width: 80,
-    backgroundColor: '#f5f5f5',
-    borderRadius: 10,
-
-    borderColor: 'black',
-    borderWidth: 2,
-    borderStyle: 'solid',
-
     alignItems: 'center',
-    justifyContent: 'center',
   },
-  titleLogin: {
-    fontFamily: 'Poppins-Bold',
-    fontSize: 22,
-    letterSpacing: 3,
-  },
+
+  // logoShape: {
+  //   height: 100,
+  //   width: 100,
+  //   backgroundColor: 'transparent',
+  //   borderRadius: 20,
+
+  //   borderColor: 'black',
+  //   borderWidth: 2,
+  //   borderStyle: 'solid',
+
+  //   alignItems: 'center',
+  //   justifyContent: 'center',
+
+  //   marginTop: height*0.15,
+  // },
+  // logoInside: {
+  //   height: 80,
+  //   width: 80,
+  //   backgroundColor: 'transparent',
+  //   borderRadius: 10,
+
+  //   borderColor: '#ac6839',
+  //   borderWidth: 2,
+  //   borderStyle: 'solid',
+
+  //   alignItems: 'center',
+  //   justifyContent: 'center',
+  // },
+
+
+  // titleLogin: {
+  //   fontFamily: 'Poppins-Bold',
+  //   fontSize: 22,
+  //   letterSpacing: 1,
+  //   color: '#f69552'
+  // },
 
   titleSignUp: {
     fontFamily: 'Poppins-Bold',
     fontSize: 24,
     letterSpacing: 2,
-
-
-    marginTop: height*0.1
-
   },
 
   loginInputCon: {
@@ -135,19 +157,22 @@ export const ss = StyleSheet.create({
   },
 
   loginInput: {
-    height: 40,
-    width: '75%',
-    borderColor: 'transparent',
-    borderBottomColor: 'gray',
+    height: 45,
+    width: 0.8*width,
 
+    backgroundColor: '#ffffff1d',
+
+    borderColor: 'transparent',
     borderWidth: 1,
     borderStyle: 'solid',
+    borderRadius: 10,
+
 
     paddingLeft: 5,
-    paddingBottom: 0,
 
     fontFamily: 'CircularAir-Light',
     fontSize: 14,
+    color: '#f5f5f5'
   },
 
   loginButtonCon: {
@@ -155,30 +180,37 @@ export const ss = StyleSheet.create({
     marginTop: 60
   },
   loginButton: {
-    backgroundColor: 'transparent',
+    backgroundColor: '#f5f5f5',
     height: 45,
-    width: '75%',
+    width: 0.75*width,
 
-    borderColor: 'black',
+    borderColor: 'transparent', // '#ac683999',
     borderWidth: 1,
     borderStyle: 'solid',
+    borderRadius: 10,
 
-    borderRadius: 99,
     justifyContent: 'center',
     alignItems: 'center'
   },
+  
   loginButtonText: {
-    fontSize: 12,
+    fontSize: 14,
     fontFamily: 'Circular-Bold',
-    letterSpacing: 3,
-    color: '#000000'
+
+    color: '#ac6839'
   },
 
   posterBigCon: {
     alignItems: 'flex-start'
   },
   generalInfoFilmCon: {},
-  otherPoster: {}
+  otherPoster: {},
+
+  errorMessage: {
+    fontFamily: 'CircularAir-Light',
+    color: '#9b1c31',
+    fontSize: 12,
+  },
 })
 
 export const sHome = StyleSheet.create({
@@ -288,7 +320,9 @@ export const sHome = StyleSheet.create({
   imgPosterScroll: {
     width: 100,
     height: height*0.18,
-    resizeMode: 'contain'
+    resizeMode: 'contain',
+
+    
   },
 
   // BIG POSTER
@@ -341,6 +375,7 @@ export const sSearch = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'flex-end'
   },
+
   searchBar: {
     width: 0.8*width,
     height: 0.12*width,
@@ -393,9 +428,22 @@ export const sSearch = StyleSheet.create({
 
   // SEARCH RESULT 
 
+  headersCon: {
+    position: 'absolute',
+    flexDirection: 'row',
+  },
+
+  headerButton: {
+    marginLeft: width*0.06
+  },
+
+  flatListCon: {
+    // paddingBottom: width/1.5
+  },
+
   posterGrid: {
     flexDirection: 'row',
-    flexWrap: 'wrap'
+    flexWrap: 'wrap',
   },
 
   posterGridElement: {
@@ -406,8 +454,8 @@ export const sSearch = StyleSheet.create({
     alignItems: 'center',
   },
   scrollerResult: {
-    marginBottom: 100,
-  }
+
+  },
 
 })
 
@@ -487,6 +535,8 @@ export const sProfile = StyleSheet.create({
     color: '#9b1c31',
     marginRight: 10
   },
+
+
 
 
 })

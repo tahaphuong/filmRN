@@ -12,7 +12,7 @@ export default class LoginFilm extends Component {
             <View style={styles.loginImgCon} >
               <ImageBackground source={require('../../../assets/photosFilmApp/filmLogin.png')} style={styles.loginImg}>
                 <LinearGradient colors={['#f5f5f5', '#f5f5f500']} style={styles.loginUpperLinear}></LinearGradient>
-                <LinearGradient colors={['#f5f5f500', '#f5f5f500']} style={styles.loginMiddleLinear}><Text style={styles.titleLogin}>Filmy Play</Text></LinearGradient>
+                <LinearGradient colors={['#f5f5f500', '#f5f5f500']} style={styles.loginMiddleLinear}><Text style={styles.loginTitle}>Filmy Play</Text></LinearGradient>
                 <LinearGradient colors={['#f5f5f500', '#f5f5f5']} style={styles.loginLowerLinear}></LinearGradient>
               </ImageBackground>
             </View>

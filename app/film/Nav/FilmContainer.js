@@ -7,6 +7,8 @@ import {AuthStack} from '../Nav/FilmAuthNav'
 
 
 
+
+
 const Switcher = createSwitchNavigator({
   AppStack: AppStack,
   AuthStack: AuthStack,
