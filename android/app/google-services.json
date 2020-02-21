@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "617195432978",
+    "firebase_url": "https://film-react-native.firebaseio.com",
+    "project_id": "film-react-native",
+    "storage_bucket": "film-react-native.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:617195432978:android:7569f1cf9d64d1cbe5fccb",
+        "android_client_info": {
+          "package_name": "com.awesomeproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "617195432978-su1cie7kurq7ab4oaht01b0gcap02ohl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAMQojKMtMVevZuhEAehFz32SRXL1FwFis"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "617195432978-su1cie7kurq7ab4oaht01b0gcap02ohl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
