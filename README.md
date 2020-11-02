@@ -54,7 +54,7 @@ For IOS:
 
 ### And that's it!! The app will run!
 
-If there any problems, please reach out to me [phuongahat1995@gmail.com]
+If there any problems, please reach out to me [phuonghata1995@gmail.com]
 
 ## Thank you for visiting
 My name is Phuong Ta, a newbie coder coming from Vietnam, started coding in July 2019. I'm currently looking for the chance to improve my skills as well as get more experience working on real projects.
