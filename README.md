@@ -4,7 +4,7 @@ demo film app (React Native)
 ## Intro
 This is one of the first apps I created with React Native. It is a very basic and simple app (for practicing purpose only lol). There would be a lot of bugs and some bad code logic, therefore it would be great if you can give me some feedbacks, so that I can improve my skills. <3
 
-My email: [phuongahat1995@gmail.com]
+My email: [phuonghata1995@gmail.com]
 
 I use Firebase Auth and Firestore in this project to authenticate user as well as store data. Much thanks to [OMDb API](http://www.omdbapi.com/) for having such a great movie database.
 
